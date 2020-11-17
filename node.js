@@ -8996,6 +8996,7 @@ var $;
             const obj = new this.$.$my_gitlab_file();
             obj.lines = () => this.file_text(id);
             obj.highlight = () => this.search();
+            obj.expanded = (val) => this.file_expanded(id, val);
             return obj;
         }
         plugins() {
@@ -9041,6 +9042,11 @@ var $;
         file_text(id) {
             return [];
         }
+        file_expanded(id, val) {
+            if (val !== undefined)
+                return val;
+            return true;
+        }
         Theme() {
             const obj = new this.$.$mol_theme_auto();
             return obj;
@@ -9080,6 +9086,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $my_gitlab.prototype, "File_views", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $my_gitlab.prototype, "file_expanded", null);
     __decorate([
         $.$mol_mem
     ], $my_gitlab.prototype, "Theme", null);

@@ -2736,6 +2736,7 @@ declare namespace $ {
         file_views(): readonly $mol_view[];
         File_views(): $$.$mol_list;
         file_text(id: any): readonly string[];
+        file_expanded(id: any, val?: any): any;
         Theme(): $$.$mol_theme_auto;
         search_start(event?: any): any;
         Search_start(): $$.$mol_hotkey;
