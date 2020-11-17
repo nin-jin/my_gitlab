@@ -19,6 +19,7 @@ $my_gitlab $mol_page
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string
 		highlight <= search
+		expanded?val <=> file_expanded!id?val true
 	plugins /
 		<= Theme $mol_theme_auto
 		<= Search_start $mol_hotkey
