@@ -47,68 +47,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_decor {
-        constructor(value) {
-            this.value = value;
-        }
-        prefix() { return ''; }
-        valueOf() { return this.value; }
-        postfix() { return ''; }
-        toString() {
-            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
-        }
-    }
-    $.$mol_decor = $mol_decor;
-})($ || ($ = {}));
-//decor.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_unit extends $.$mol_decor {
-        constructor(value, literal) {
-            super(value);
-            this.literal = literal;
-        }
-        postfix() {
-            return this.literal;
-        }
-        static per(value) { return new $mol_style_unit(value, '%'); }
-        static px(value) { return new $mol_style_unit(value, 'px'); }
-        static mm(value) { return new $mol_style_unit(value, 'mm'); }
-        static cm(value) { return new $mol_style_unit(value, 'cm'); }
-        static Q(value) { return new $mol_style_unit(value, 'Q'); }
-        static in(value) { return new $mol_style_unit(value, 'in'); }
-        static pc(value) { return new $mol_style_unit(value, 'pc'); }
-        static pt(value) { return new $mol_style_unit(value, 'pt'); }
-        static cap(value) { return new $mol_style_unit(value, 'cap'); }
-        static ch(value) { return new $mol_style_unit(value, 'ch'); }
-        static em(value) { return new $mol_style_unit(value, 'em'); }
-        static rem(value) { return new $mol_style_unit(value, 'rem'); }
-        static ex(value) { return new $mol_style_unit(value, 'ex'); }
-        static ic(value) { return new $mol_style_unit(value, 'ic'); }
-        static lh(value) { return new $mol_style_unit(value, 'lh'); }
-        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
-        static vh(value) { return new $mol_style_unit(value, 'vh'); }
-        static vw(value) { return new $mol_style_unit(value, 'vw'); }
-        static vi(value) { return new $mol_style_unit(value, 'vi'); }
-        static vb(value) { return new $mol_style_unit(value, 'vb'); }
-        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
-        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
-        static deg(value) { return new $mol_style_unit(value, 'deg'); }
-        static rad(value) { return new $mol_style_unit(value, 'rad'); }
-        static grad(value) { return new $mol_style_unit(value, 'grad'); }
-        static turn(value) { return new $mol_style_unit(value, 'turn'); }
-        static s(value) { return new $mol_style_unit(value, 's'); }
-        static ms(value) { return new $mol_style_unit(value, 'ms'); }
-    }
-    $.$mol_style_unit = $mol_style_unit;
-})($ || ($ = {}));
-//unit.js.map
-;
-"use strict";
-var $;
-(function ($) {
     let $$;
     (function ($$_1) {
     })($$ = $.$$ || ($.$$ = {}));
@@ -377,6 +315,68 @@ var $;
     $.$mol_style_attach = $mol_style_attach;
 })($ || ($ = {}));
 //attach.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_decor {
+        constructor(value) {
+            this.value = value;
+        }
+        prefix() { return ''; }
+        valueOf() { return this.value; }
+        postfix() { return ''; }
+        toString() {
+            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
+        }
+    }
+    $.$mol_decor = $mol_decor;
+})($ || ($ = {}));
+//decor.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_unit extends $.$mol_decor {
+        constructor(value, literal) {
+            super(value);
+            this.literal = literal;
+        }
+        postfix() {
+            return this.literal;
+        }
+        static per(value) { return new $mol_style_unit(value, '%'); }
+        static px(value) { return new $mol_style_unit(value, 'px'); }
+        static mm(value) { return new $mol_style_unit(value, 'mm'); }
+        static cm(value) { return new $mol_style_unit(value, 'cm'); }
+        static Q(value) { return new $mol_style_unit(value, 'Q'); }
+        static in(value) { return new $mol_style_unit(value, 'in'); }
+        static pc(value) { return new $mol_style_unit(value, 'pc'); }
+        static pt(value) { return new $mol_style_unit(value, 'pt'); }
+        static cap(value) { return new $mol_style_unit(value, 'cap'); }
+        static ch(value) { return new $mol_style_unit(value, 'ch'); }
+        static em(value) { return new $mol_style_unit(value, 'em'); }
+        static rem(value) { return new $mol_style_unit(value, 'rem'); }
+        static ex(value) { return new $mol_style_unit(value, 'ex'); }
+        static ic(value) { return new $mol_style_unit(value, 'ic'); }
+        static lh(value) { return new $mol_style_unit(value, 'lh'); }
+        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
+        static vh(value) { return new $mol_style_unit(value, 'vh'); }
+        static vw(value) { return new $mol_style_unit(value, 'vw'); }
+        static vi(value) { return new $mol_style_unit(value, 'vi'); }
+        static vb(value) { return new $mol_style_unit(value, 'vb'); }
+        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
+        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
+        static deg(value) { return new $mol_style_unit(value, 'deg'); }
+        static rad(value) { return new $mol_style_unit(value, 'rad'); }
+        static grad(value) { return new $mol_style_unit(value, 'grad'); }
+        static turn(value) { return new $mol_style_unit(value, 'turn'); }
+        static s(value) { return new $mol_style_unit(value, 's'); }
+        static ms(value) { return new $mol_style_unit(value, 'ms'); }
+    }
+    $.$mol_style_unit = $mol_style_unit;
+})($ || ($ = {}));
+//unit.js.map
 ;
 "use strict";
 var $;
@@ -9282,10 +9282,10 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    const { rem, per } = $.$mol_style_unit;
     $.$mol_style_define($.$my_gitlab, {
         File_views: {
             padding: $.$mol_gap.block,
+            display: 'flex',
         },
     });
 })($ || ($ = {}));
