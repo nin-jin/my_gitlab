@@ -17,7 +17,7 @@ namespace $.$$ {
 			const uri = `web.js`
 			const lines = this.$.$mol_fetch.text( uri ).split('\n')
 			
-			return $mol_array_chunks( lines, ()=> Math.random() > .95 )
+			return $mol_array_chunks( lines, ()=> Math.random() > .99 )
 		}
 
 		@ $mol_mem

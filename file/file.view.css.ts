@@ -1,6 +1,7 @@
 namespace $ {
 
 	const { rem, px } = $mol_style_unit
+	const { hsla } = $mol_style_func
 	
 	$mol_style_define( $my_gitlab_file , {
 
@@ -16,6 +17,16 @@ namespace $ {
 
 		margin: $mol_gap.block,
 		
+		border: {
+			radius: rem(.25),
+		},
+
+		Trigger: {
+			background: {
+				color: hsla( 0, 0, 50, .05 )
+			},
+		},
+
 	} )
 
 }

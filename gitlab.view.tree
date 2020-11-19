@@ -1,7 +1,7 @@
 $my_gitlab $mol_page
 	attr *
 		tabindex 0
-	title \Мерж реквест
+	title \Change Log
 	head /
 		<= Title
 		<= Lights $mol_lights_toggle
