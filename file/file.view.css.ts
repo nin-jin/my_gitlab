@@ -21,9 +21,9 @@ namespace $ {
 			radius: rem(.25),
 		},
 
-		Trigger: {
+		Label: {
 			background: {
-				color: hsla( 0, 0, 50, .05 )
+				color: hsla( 0, 0, 50, .2 )
 			},
 		},
 
