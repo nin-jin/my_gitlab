@@ -9302,6 +9302,9 @@ var $;
             file_text(id) {
                 return this.files()[id];
             }
+            file_expanded(id, next) {
+                return next !== null && next !== void 0 ? next : (this.$.$mol_state_arg.value('collapse') !== '');
+            }
         }
         __decorate([
             $.$mol_mem
@@ -9309,6 +9312,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $my_gitlab.prototype, "file_views", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $my_gitlab.prototype, "file_expanded", null);
         $$.$my_gitlab = $my_gitlab;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

@@ -2783,6 +2783,7 @@ declare namespace $.$$ {
         files(): string[][];
         file_views(): $my_gitlab_file[];
         file_text(id: number): string[];
+        file_expanded(id: string, next?: boolean): boolean;
     }
 }
 
