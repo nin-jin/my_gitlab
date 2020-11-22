@@ -9002,7 +9002,7 @@ var $;
         }
         Sources() {
             const obj = new this.$.$mol_link_source();
-            obj.uri = () => "https://github.com/nin-jin/gitlab";
+            obj.uri = () => "https://github.com/nin-jin/my_gitlab";
             return obj;
         }
         Gitlab() {
