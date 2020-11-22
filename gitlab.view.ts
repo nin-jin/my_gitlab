@@ -29,6 +29,11 @@ namespace $.$$ {
 			return this.files()[ id ]
 		}
 
+		@ $mol_mem_key
+		file_expanded( id: string, next?: boolean ) {
+			return next ?? ( this.$.$mol_state_arg.value( 'collapse' ) !== '' )
+		}
+
 	}
 
 }
