@@ -2,6 +2,24 @@ namespace $.$$ {
 
 	export class $my_gitlab extends $.$my_gitlab {
 
+		@ $mol_memo.field
+		get $() {
+
+			const $ = super.$
+			return super.$.$mol_ambient({
+
+				$mol_support_css_overflow_anchor: ()=> {
+					if( this.$.$mol_state_arg.value( 'lazy' ) === '' ) {
+						return false
+					} else {
+						return $.$mol_support_css_overflow_anchor()
+					}
+				}
+
+			})
+			
+		}
+
 		search( next?: string ) {
 			return this.$.$mol_state_arg.value( 'search', next ) ?? ''
 		}
