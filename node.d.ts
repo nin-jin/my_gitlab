@@ -1030,6 +1030,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    function $mol_support_css_overflow_anchor(this: $mol_ambient_context): boolean;
+}
+
+declare namespace $ {
     class $mol_dom_listener extends $mol_object {
         _node: any;
         _event: string;
@@ -2778,6 +2782,7 @@ declare namespace $ {
 
 declare namespace $.$$ {
     class $my_gitlab extends $.$my_gitlab {
+        get $(): $mol_ambient_context;
         search(next?: string): string;
         search_start(event: Event): void;
         files(): string[][];

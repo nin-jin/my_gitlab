@@ -3149,6 +3149,17 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    function $mol_support_css_overflow_anchor() {
+        var _a, _b;
+        return (_b = (_a = this.$mol_dom_context.CSS) === null || _a === void 0 ? void 0 : _a.supports('overflow-anchor:auto')) !== null && _b !== void 0 ? _b : false;
+    }
+    $.$mol_support_css_overflow_anchor = $mol_support_css_overflow_anchor;
+})($ || ($ = {}));
+//css.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_dom_listener extends $.$mol_object {
         constructor(_node, _event, _handler, _config = { passive: true }) {
             super();
@@ -3218,9 +3229,7 @@ var $;
                 return (rows.length === 0) ? [this.Empty()] : rows;
             }
             render_visible_only() {
-                if (!$.$mol_dom_context.CSS)
-                    return false;
-                return $.$mol_dom_context.CSS.supports('overflow-anchor:auto');
+                return this.$.$mol_support_css_overflow_anchor();
             }
             view_window() {
                 var _a, _b, _c, _d, _e, _f;
@@ -3233,7 +3242,7 @@ var $;
                 let max2 = max = Math.min(max, kids.length);
                 let min2 = min = Math.max(0, Math.min(min, max - 1));
                 const anchoring = this.render_visible_only();
-                const window_height = this.$.$mol_window.size().height;
+                const window_height = this.$.$mol_window.size().height + 40;
                 const over = Math.ceil(window_height * this.render_over());
                 const limit_top = -over;
                 const limit_bottom = window_height + over;
@@ -3327,9 +3336,6 @@ var $;
         __decorate([
             $.$mol_mem
         ], $mol_list.prototype, "sub", null);
-        __decorate([
-            $.$mol_memo.method
-        ], $mol_list.prototype, "render_visible_only", null);
         __decorate([
             $.$mol_mem
         ], $mol_list.prototype, "view_window", null);
@@ -8945,10 +8951,23 @@ var $;
 ;
 "use strict";
 var $;
-(function ($) {
+(function ($_1) {
     var $$;
     (function ($$) {
         class $my_gitlab extends $.$my_gitlab {
+            get $() {
+                const $ = super.$;
+                return super.$.$mol_ambient({
+                    $mol_support_css_overflow_anchor: () => {
+                        if (this.$.$mol_state_arg.value('lazy') === '') {
+                            return false;
+                        }
+                        else {
+                            return $.$mol_support_css_overflow_anchor();
+                        }
+                    }
+                });
+            }
             search(next) {
                 var _a;
                 return (_a = this.$.$mol_state_arg.value('search', next)) !== null && _a !== void 0 ? _a : '';
@@ -8960,7 +8979,7 @@ var $;
             files() {
                 const uri = `web.js`;
                 const lines = this.$.$mol_fetch.text(uri).split('\n');
-                return $.$mol_array_chunks(lines, () => Math.random() > .99);
+                return $_1.$mol_array_chunks(lines, () => Math.random() > .99);
             }
             file_views() {
                 return this.files().map((_, i) => this.File_view(i));
@@ -8973,16 +8992,19 @@ var $;
             }
         }
         __decorate([
-            $.$mol_mem
+            $_1.$mol_memo.field
+        ], $my_gitlab.prototype, "$", null);
+        __decorate([
+            $_1.$mol_mem
         ], $my_gitlab.prototype, "files", null);
         __decorate([
-            $.$mol_mem
+            $_1.$mol_mem
         ], $my_gitlab.prototype, "file_views", null);
         __decorate([
-            $.$mol_mem_key
+            $_1.$mol_mem_key
         ], $my_gitlab.prototype, "file_expanded", null);
         $$.$my_gitlab = $my_gitlab;
-    })($$ = $.$$ || ($.$$ = {}));
+    })($$ = $_1.$$ || ($_1.$$ = {}));
 })($ || ($ = {}));
 //gitlab.view.js.map
 ;
