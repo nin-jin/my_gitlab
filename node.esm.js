@@ -2944,24 +2944,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("mol/gap/gap.css", ":root {\n\t--mol_gap_block: .75rem;\n\t--mol_gap_text: .5rem .75rem;\n}\n");
-})($ || ($ = {}));
-//gap.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    const { vary } = $.$mol_style_func;
-    $.$mol_gap = {
-        block: vary('--mol_gap_block'),
-        text: vary('--mol_gap_text'),
-    };
-})($ || ($ = {}));
-//gap.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_scroll extends $.$mol_view {
         minimal_height() {
             return 0;
@@ -3161,6 +3143,24 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //scroll.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/gap/gap.css", ":root {\n\t--mol_gap_block: .75rem;\n\t--mol_gap_text: .5rem .75rem;\n}\n");
+})($ || ($ = {}));
+//gap.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    const { vary } = $.$mol_style_func;
+    $.$mol_gap = {
+        block: vary('--mol_gap_block'),
+        text: vary('--mol_gap_text'),
+    };
+})($ || ($ = {}));
+//gap.js.map
 ;
 "use strict";
 var $;
@@ -8846,7 +8846,7 @@ var $;
         index(val) {
             if (val !== undefined)
                 return val;
-            return -1;
+            return 0;
         }
         Backward() {
             const obj = new this.$.$mol_hotkey();
@@ -8902,12 +8902,13 @@ var $;
                 if (all.length == 0)
                     return 0;
                 let index = next !== null && next !== void 0 ? next : super.index();
-                if (index >= all.length)
-                    index = 0;
-                if (index < 0)
-                    index = all.length - 1;
+                if (index > all.length)
+                    index = 1;
+                if (index <= 0)
+                    index = all.length;
                 if (next !== undefined) {
-                    this.Root().ensure_visible(all[index][all[index].length - 1]);
+                    const path = all[index - 1];
+                    this.Root().ensure_visible(path[path.length - 1]);
                 }
                 return index;
             }
@@ -8931,6 +8932,41 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //jumper.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_tick extends $.$mol_icon {
+        path() {
+            return "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z";
+        }
+    }
+    $.$mol_icon_tick = $mol_icon_tick;
+})($ || ($ = {}));
+//tick.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_check_box extends $.$mol_check {
+        Icon() {
+            const obj = new this.$.$mol_icon_tick();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_check_box.prototype, "Icon", null);
+    $.$mol_check_box = $mol_check_box;
+})($ || ($ = {}));
+//box.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/check/box/box.view.css", "[mol_check_box_icon] {\n\tborder-radius: var(--mol_skin_round);\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_check]:not([mol_check_checked]) > [mol_check_box_icon] {\n\tfill: transparent;\n}\n\n[mol_check]:not([disabled]) > [mol_check_box_icon] {\n\tbackground: var(--mol_theme_field);\n\tcolor: var(--mol_theme_text);\n}\n\n[mol_check_box_title] {\n\tmargin-left: .25rem;\n}\n");
+})($ || ($ = {}));
+//box.view.css.js.map
 ;
 "use strict";
 var $;
@@ -8970,7 +9006,8 @@ var $;
     class $my_gitlab extends $.$mol_page {
         attr() {
             return {
-                tabindex: 0
+                tabindex: 0,
+                my_gitlab_anchoring: this.anchoring()
             };
         }
         title() {
@@ -8990,6 +9027,11 @@ var $;
                 this.File_views()
             ];
         }
+        foot() {
+            return [
+                this.Anchoring()
+            ];
+        }
         File_view(id) {
             const obj = new this.$.$my_gitlab_file();
             obj.lines = () => this.file_text(id);
@@ -9002,6 +9044,11 @@ var $;
                 this.Theme(),
                 this.Search_start()
             ];
+        }
+        anchoring(val) {
+            if (val !== undefined)
+                return val;
+            return true;
         }
         Lights() {
             const obj = new this.$.$mol_lights_toggle();
@@ -9037,6 +9084,12 @@ var $;
             obj.rows = () => this.file_views();
             return obj;
         }
+        Anchoring() {
+            const obj = new this.$.$mol_check_box();
+            obj.checked = (val) => this.anchoring(val);
+            obj.title = () => "Anchoring";
+            return obj;
+        }
         file_text(id) {
             return [];
         }
@@ -9068,6 +9121,9 @@ var $;
     ], $my_gitlab.prototype, "File_view", null);
     __decorate([
         $.$mol_mem
+    ], $my_gitlab.prototype, "anchoring", null);
+    __decorate([
+        $.$mol_mem
     ], $my_gitlab.prototype, "Lights", null);
     __decorate([
         $.$mol_mem
@@ -9084,6 +9140,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $my_gitlab.prototype, "File_views", null);
+    __decorate([
+        $.$mol_mem
+    ], $my_gitlab.prototype, "Anchoring", null);
     __decorate([
         $.$mol_mem_key
     ], $my_gitlab.prototype, "file_expanded", null);
@@ -9282,9 +9341,24 @@ var $;
 (function ($) {
     const { rem } = $.$mol_style_unit;
     $.$mol_style_define($.$my_gitlab, {
+        $mol_scroll: {
+            overflowAnchor: 'none',
+        },
+        '@': {
+            'my_gitlab_anchoring': {
+                true: {
+                    $mol_scroll: {
+                        overflowAnchor: 'auto'
+                    },
+                },
+            }
+        },
         File_views: {
             padding: $.$mol_gap.block,
             display: 'flex',
+        },
+        Foot: {
+            padding: $.$mol_gap.block
         },
     });
 })($ || ($ = {}));
@@ -9308,6 +9382,10 @@ var $;
                         }
                     }
                 });
+            }
+            anchoring(next) {
+                const arg = next === undefined ? undefined : String(next);
+                return this.$.$mol_state_arg.value('anchoring', arg) !== 'false';
             }
             search(next) {
                 var _a;

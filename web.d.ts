@@ -907,16 +907,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
-    let $mol_gap: {
-        readonly block: $mol_style_func<"var", "--mol_gap_block">;
-        readonly text: $mol_style_func<"var", "--mol_gap_text">;
-    };
-}
-
-declare namespace $ {
     class $mol_scroll extends $mol_view {
         minimal_height(): number;
         _event_scroll_timer(val?: any): any;
@@ -959,6 +949,16 @@ declare namespace $.$$ {
         _event_scroll_timer(next?: $mol_after_timeout | null): $mol_after_timeout | null | undefined;
         event_scroll(next?: Event): void;
     }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    let $mol_gap: {
+        readonly block: $mol_style_func<"var", "--mol_gap_block">;
+        readonly text: $mol_style_func<"var", "--mol_gap_text">;
+    };
 }
 
 declare namespace $ {
@@ -2716,6 +2716,21 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_icon_tick extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_check_box extends $mol_check {
+        Icon(): $mol_icon_tick;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_theme_auto extends $mol_plugin {
         attr(): {
             mol_theme: string;
@@ -2734,12 +2749,15 @@ declare namespace $ {
     class $my_gitlab extends $mol_page {
         attr(): {
             tabindex: number;
+            my_gitlab_anchoring: any;
         };
         title(): string;
         head(): readonly any[];
         body(): readonly any[];
+        foot(): readonly any[];
         File_view(id: any): $$.$my_gitlab_file;
         plugins(): readonly any[];
+        anchoring(val?: any): any;
         Lights(): $$.$mol_lights_toggle;
         Sources(): $mol_link_source;
         Gitlab(): $$.$mol_link_iconed;
@@ -2747,6 +2765,7 @@ declare namespace $ {
         Search(): $$.$mol_search_jumper;
         file_views(): readonly $mol_view[];
         File_views(): $$.$mol_list;
+        Anchoring(): $mol_check_box;
         file_text(id: any): readonly string[];
         file_expanded(id: any, val?: any): any;
         Theme(): $$.$mol_theme_auto;
@@ -2765,6 +2784,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $my_gitlab extends $.$my_gitlab {
         get $(): $mol_ambient_context;
+        anchoring(next?: boolean): boolean;
         search(next?: string): string;
         search_start(event: Event): void;
         files(): string[][];
