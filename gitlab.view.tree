@@ -18,6 +18,11 @@ $my_gitlab $mol_page
 		<= File_views $mol_list
 			rows <= file_views /$mol_view
 	foot /
+		<= Lazy $mol_switch
+			value?val <=> lazy_string?val \false
+			options *
+				true \Lazy
+				false \Virtual
 		<= Anchoring $mol_check_box
 			checked?val <=> anchoring?val
 			title \Anchoring

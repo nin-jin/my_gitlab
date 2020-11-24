@@ -9,15 +9,20 @@ namespace $.$$ {
 			return super.$.$mol_ambient({
 
 				$mol_support_css_overflow_anchor: ()=> {
-					if( this.$.$mol_state_arg.value( 'lazy' ) === '' ) {
-						return false
-					} else {
-						return $.$mol_support_css_overflow_anchor()
-					}
+					return this.lazy() ? false : $.$mol_support_css_overflow_anchor()
 				}
 
 			})
 			
+		}
+
+		lazy( next?: boolean ) {
+			const arg = next === undefined ? undefined : next ? 'true' : 'false'
+			return this.$.$mol_state_arg.value( 'lazy', arg ) === 'true'
+		}
+
+		lazy_string( next?: string ) {
+			return this.$.$mol_state_arg.value( 'lazy', next ) ?? 'false'
 		}
 
 		anchoring( next?: boolean ) {
