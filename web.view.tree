@@ -523,6 +523,22 @@ $mol_search_jumper $mol_search
 		<= Forward $mol_hotkey
 			key * enter?event <=> forward?event
 
+$mol_switch $mol_view
+	Option!id $mol_switch_option
+		checked?val <=> option_checked!id?val false
+		label <= option_label!id / <= option_title!id \
+		enabled <= option_enabled!id <= enabled true
+	value?val null
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch_option $mol_check
+	minimal_height 24
+	attr *
+		^
+		mol_theme <= theme \
+
 $mol_icon_tick $mol_icon path \M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z
 
 $mol_check_box $mol_check
@@ -551,9 +567,17 @@ $my_gitlab $mol_page
 		<= File_views $mol_list
 			rows <= file_views /$mol_view
 	foot /
+		<= Lazy $mol_switch
+			value?val <=> lazy_string?val \false
+			options *
+				true \Lazy
+				false \Virtual
 		<= Anchoring $mol_check_box
 			checked?val <=> anchoring?val
 			title \Anchoring
+		<= Collapse $mol_check_box
+			checked?val <=> collapse?val \false
+			title \Collapse
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string
 		highlight <= search

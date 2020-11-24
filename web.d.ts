@@ -2716,6 +2716,54 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_switch extends $mol_view {
+        Option(id: any): $$.$mol_switch_option;
+        value(val?: any): any;
+        options(): {};
+        keys(): readonly string[];
+        sub(): readonly $mol_check[];
+        option_checked(id: any, val?: any): any;
+        option_title(id: any): string;
+        option_label(id: any): readonly any[];
+        enabled(): boolean;
+        option_enabled(id: any): boolean;
+        items(): readonly $mol_check[];
+    }
+    class $mol_switch_option extends $mol_check {
+        minimal_height(): number;
+        attr(): {
+            mol_theme: string;
+            mol_check_checked: any;
+            "aria-checked": any;
+            role: string;
+            disabled: boolean;
+            tabindex: number;
+            title: string;
+        };
+        theme(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_switch extends $.$mol_switch {
+        value(next?: any): any;
+        options(): {
+            [key: string]: string;
+        };
+        keys(): string[];
+        items(): $mol_switch_option[];
+        option_title(key: string): string;
+        option_checked(key: string, next?: boolean): boolean | undefined;
+    }
+    class $mol_switch_option extends $.$mol_switch_option {
+        theme(): "" | "$mol_theme_base";
+    }
+}
+
+declare namespace $ {
     class $mol_icon_tick extends $mol_icon {
         path(): string;
     }
@@ -2765,7 +2813,11 @@ declare namespace $ {
         Search(): $$.$mol_search_jumper;
         file_views(): readonly $mol_view[];
         File_views(): $$.$mol_list;
+        lazy_string(val?: any): any;
+        Lazy(): $$.$mol_switch;
         Anchoring(): $mol_check_box;
+        collapse(val?: any): any;
+        Collapse(): $mol_check_box;
         file_text(id: any): readonly string[];
         file_expanded(id: any, val?: any): any;
         Theme(): $$.$mol_theme_auto;
@@ -2784,7 +2836,10 @@ declare namespace $ {
 declare namespace $.$$ {
     class $my_gitlab extends $.$my_gitlab {
         get $(): $mol_ambient_context;
+        lazy(next?: boolean): boolean;
+        lazy_string(next?: string): string;
         anchoring(next?: boolean): boolean;
+        collapse(next?: boolean): boolean;
         search(next?: string): string;
         search_start(event: Event): void;
         files(): string[][];
