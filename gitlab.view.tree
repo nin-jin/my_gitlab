@@ -26,6 +26,9 @@ $my_gitlab $mol_page
 		<= Anchoring $mol_check_box
 			checked?val <=> anchoring?val
 			title \Anchoring
+		<= Collapse $mol_check_box
+			checked?val <=> collapse?val \false
+			title \Collapse
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string
 		highlight <= search

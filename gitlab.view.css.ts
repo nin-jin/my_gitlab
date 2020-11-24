@@ -24,7 +24,11 @@ namespace $ {
 		},
 
 		Foot: {
-			padding: $mol_gap.block
+			padding: $mol_gap.block,
+			justifyContent: 'flex-end',
+			flex: {
+				wrap: 'wrap',
+			},
 		},
 
 	} )

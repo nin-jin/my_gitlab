@@ -18,16 +18,21 @@ namespace $.$$ {
 
 		lazy( next?: boolean ) {
 			const arg = next === undefined ? undefined : next ? 'true' : 'false'
-			return this.$.$mol_state_arg.value( 'lazy', arg ) === 'true'
+			return this.lazy_string( arg ) === 'true'
 		}
 
-		lazy_string( next?: string ) {
+		lazy_string( next?: string ): string {
 			return this.$.$mol_state_arg.value( 'lazy', next ) ?? 'false'
 		}
 
 		anchoring( next?: boolean ) {
 			const arg = next === undefined ? undefined : String( next ) 
 			return this.$.$mol_state_arg.value( 'anchoring', arg ) !== 'false'
+		}
+
+		collapse( next?: boolean ) {
+			const arg = next === undefined ? undefined : String( next ) 
+			return this.$.$mol_state_arg.value( 'collapse', arg ) === 'true'
 		}
 
 		search( next?: string ) {
@@ -59,7 +64,7 @@ namespace $.$$ {
 
 		@ $mol_mem_key
 		file_expanded( id: string, next?: boolean ) {
-			return next ?? ( this.$.$mol_state_arg.value( 'collapse' ) !== '' )
+			return next ?? !this.collapse()
 		}
 
 	}
