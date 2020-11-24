@@ -20,6 +20,11 @@ namespace $.$$ {
 			
 		}
 
+		anchoring( next?: boolean ) {
+			const arg = next === undefined ? undefined : String( next ) 
+			return this.$.$mol_state_arg.value( 'anchoring', arg ) !== 'false'
+		}
+
 		search( next?: string ) {
 			return this.$.$mol_state_arg.value( 'search', next ) ?? ''
 		}

@@ -1,6 +1,7 @@
 $my_gitlab $mol_page
 	attr *
 		tabindex 0
+		my_gitlab_anchoring <= anchoring?val true
 	title \Change Log
 	head /
 		<= Title
@@ -16,6 +17,10 @@ $my_gitlab $mol_page
 	body /
 		<= File_views $mol_list
 			rows <= file_views /$mol_view
+	foot /
+		<= Anchoring $mol_check_box
+			checked?val <=> anchoring?val
+			title \Anchoring
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string
 		highlight <= search
