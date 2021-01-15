@@ -3102,6 +3102,7 @@ var $;
             '@media': {
                 'print': {
                     overflow: 'visible',
+                    contain: 'none',
                 },
             },
         });
