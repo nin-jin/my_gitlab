@@ -2809,7 +2809,8 @@ declare namespace $ {
         file_expanded(id: any, val?: any): any;
         Theme(): $$.$mol_theme_auto;
         search_start(event?: any): any;
-        Search_start(): $$.$mol_hotkey;
+        Search_start_1(): $$.$mol_hotkey;
+        Search_start_2(): $$.$mol_hotkey;
     }
 }
 

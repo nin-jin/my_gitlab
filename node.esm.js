@@ -9186,7 +9186,8 @@ var $;
         plugins() {
             return [
                 this.Theme(),
-                this.Search_start()
+                this.Search_start_1(),
+                this.Search_start_2()
             ];
         }
         anchoring(val) {
@@ -9276,11 +9277,18 @@ var $;
                 return event;
             return null;
         }
-        Search_start() {
+        Search_start_1() {
             const obj = new this.$.$mol_hotkey();
             obj.mod_ctrl = () => true;
             obj.key = () => ({
                 F: (event) => this.search_start(event)
+            });
+            return obj;
+        }
+        Search_start_2() {
+            const obj = new this.$.$mol_hotkey();
+            obj.key = () => ({
+                F3: (event) => this.search_start(event)
             });
             return obj;
         }
@@ -9335,7 +9343,10 @@ var $;
     ], $my_gitlab.prototype, "search_start", null);
     __decorate([
         $.$mol_mem
-    ], $my_gitlab.prototype, "Search_start", null);
+    ], $my_gitlab.prototype, "Search_start_1", null);
+    __decorate([
+        $.$mol_mem
+    ], $my_gitlab.prototype, "Search_start_2", null);
     $.$my_gitlab = $my_gitlab;
 })($ || ($ = {}));
 //gitlab.view.tree.js.map
