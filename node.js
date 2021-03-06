@@ -8026,7 +8026,7 @@ var $;
                 if (!event)
                     return event;
                 const keys = this.keys_y();
-                if (keys.length < 2)
+                if (keys.length < 1)
                     return;
                 const index_y = this.index_y();
                 const index_old = index_y === null ? 0 : index_y;
@@ -8040,7 +8040,7 @@ var $;
                 if (!event)
                     return event;
                 const keys = this.keys_y();
-                if (keys.length < 2)
+                if (keys.length < 1)
                     return;
                 const index_y = this.index_y();
                 const index_old = index_y === null ? keys.length - 1 : index_y;
@@ -8054,7 +8054,7 @@ var $;
                 if (!event)
                     return event;
                 const keys = this.keys_x();
-                if (keys.length < 2)
+                if (keys.length < 1)
                     return;
                 const index_x = this.index_x();
                 const index_old = index_x === null ? 0 : index_x;
@@ -8068,7 +8068,7 @@ var $;
                 if (!event)
                     return event;
                 const keys = this.keys_x();
-                if (keys.length < 2)
+                if (keys.length < 1)
                     return;
                 const index_x = this.index_x();
                 const index_old = index_x === null ? keys.length - 1 : index_x;
@@ -8348,10 +8348,7 @@ var $;
                 return value == null ? id : value;
             }
             option_rows() {
-                if (this.options_filtered().length === 0)
-                    return [this.No_options()];
-                let options = this.options_filtered().map((option) => this.Option_row(option));
-                return options;
+                return this.options_filtered().map((option) => this.Option_row(option));
             }
             option_focused(component) {
                 if (component == null) {
@@ -8371,7 +8368,12 @@ var $;
                 this.focused(false);
             }
             nav_components() {
-                return [this.Filter(), ...this.option_rows()];
+                if (this.options().length > 1 && this.Filter()) {
+                    return [this.Filter(), ...this.option_rows()];
+                }
+                else {
+                    return this.option_rows();
+                }
             }
             trigger_content() {
                 return [
@@ -8380,9 +8382,10 @@ var $;
                 ];
             }
             menu_content() {
-                return (this.options().length > 1 && this.Filter())
-                    ? [this.Filter(), ...this.option_rows()]
-                    : this.option_rows();
+                return [
+                    ...this.nav_components(),
+                    ...(this.options_filtered().length === 0) ? [this.No_options()] : []
+                ];
             }
         }
         __decorate([
