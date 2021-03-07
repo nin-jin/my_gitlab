@@ -5972,6 +5972,9 @@ var $;
 var $;
 (function ($) {
     class $mol_text_code_row extends $.$mol_paragraph {
+        attr() {
+            return Object.assign(Object.assign({}, super.attr()), { mol_text_code_row_numb: this.numb() });
+        }
         text() {
             return "";
         }
@@ -5990,6 +5993,9 @@ var $;
             obj.haystack = () => this.token_text(id);
             obj.needle = () => this.highlight();
             return obj;
+        }
+        numb() {
+            return 0;
         }
         token_type(id) {
             return "";
@@ -6010,6 +6016,36 @@ var $;
     $.$mol_text_code_row = $mol_text_code_row;
 })($ || ($ = {}));
 //row.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$mol_text_code_row, {
+            display: 'block',
+            margin: {
+                left: rem(3),
+            },
+            '::before': {
+                content: 'attr(mol_text_code_row_numb)',
+                textAlign: 'right',
+                color: $.$mol_theme.shade,
+                width: rem(1.5),
+                padding: {
+                    right: rem(1.5),
+                },
+                margin: {
+                    left: rem(-3),
+                },
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//row.view.css.js.map
 ;
 "use strict";
 var $;
@@ -6095,9 +6131,13 @@ var $;
         }
         Row(id) {
             const obj = new this.$.$mol_text_code_row();
+            obj.numb = () => this.row_numb(id);
             obj.text = () => this.row_text(id);
             obj.highlight = () => this.highlight();
             return obj;
+        }
+        row_numb(id) {
+            return 0;
         }
         row_text(id) {
             return "";
@@ -6124,9 +6164,6 @@ var $;
             font: {
                 family: 'monospace',
             },
-            Row: {
-                display: 'block',
-            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -6142,10 +6179,13 @@ var $;
                 return this.text().split('\n');
             }
             rows() {
-                return this.text_lines().map((_, index) => this.Row(index));
+                return this.text_lines().map((_, index) => this.Row(index + 1));
             }
             row_text(index) {
-                return this.text_lines()[index];
+                return this.text_lines()[index - 1];
+            }
+            row_numb(index) {
+                return index;
             }
         }
         __decorate([
