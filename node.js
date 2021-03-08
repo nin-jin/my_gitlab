@@ -5979,14 +5979,21 @@ var $;
 var $;
 (function ($) {
     class $mol_text_code_row extends $.$mol_paragraph {
-        attr() {
-            return Object.assign(Object.assign({}, super.attr()), { mol_text_code_row_numb: this.numb() });
-        }
         text() {
             return "";
         }
         minimal_height() {
             return 24;
+        }
+        numb_showed() {
+            return true;
+        }
+        Numb() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.numb()
+            ];
+            return obj;
         }
         Token(id) {
             const obj = new this.$.$mol_text_code_token();
@@ -6015,6 +6022,9 @@ var $;
         }
     }
     __decorate([
+        $.$mol_mem
+    ], $mol_text_code_row.prototype, "Numb", null);
+    __decorate([
         $.$mol_mem_key
     ], $mol_text_code_row.prototype, "Token", null);
     __decorate([
@@ -6032,14 +6042,10 @@ var $;
         const { rem } = $.$mol_style_unit;
         $.$mol_style_define($$.$mol_text_code_row, {
             display: 'block',
-            margin: {
-                left: rem(3),
-            },
-            '::before': {
-                content: 'attr(mol_text_code_row_numb)',
+            Numb: {
                 textAlign: 'right',
                 color: $.$mol_theme.shade,
-                width: rem(1.5),
+                width: rem(3),
                 padding: {
                     right: rem(1.5),
                 },
@@ -6048,6 +6054,7 @@ var $;
                 },
                 display: 'inline-block',
                 whiteSpace: 'nowrap',
+                userSelect: 'none',
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -6072,7 +6079,10 @@ var $;
                 return tokens;
             }
             sub() {
-                return this.row_content([]);
+                return [
+                    ...this.numb_showed() ? [this.Numb()] : [],
+                    ...this.row_content([])
+                ];
             }
             row_content(path) {
                 return this.tokens(path).map((t, i) => this.Token([...path, i]));
@@ -6130,6 +6140,9 @@ var $;
 var $;
 (function ($) {
     class $mol_text_code extends $.$mol_list {
+        attr() {
+            return Object.assign(Object.assign({}, super.attr()), { mol_text_code_sidebar_showed: this.sidebar_showed() });
+        }
         text() {
             return "";
         }
@@ -6138,10 +6151,14 @@ var $;
         }
         Row(id) {
             const obj = new this.$.$mol_text_code_row();
+            obj.numb_showed = () => this.sidebar_showed();
             obj.numb = () => this.row_numb(id);
             obj.text = () => this.row_text(id);
             obj.highlight = () => this.highlight();
             return obj;
+        }
+        sidebar_showed() {
+            return false;
         }
         row_numb(id) {
             return 0;
@@ -6165,11 +6182,21 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const { rem } = $.$mol_style_unit;
         $.$mol_style_define($$.$mol_text_code, {
             padding: $.$mol_gap.text,
             whiteSpace: 'pre-wrap',
             font: {
                 family: 'monospace',
+            },
+            '@': {
+                'mol_text_code_sidebar_showed': {
+                    true: {
+                        margin: {
+                            left: rem(3),
+                        },
+                    },
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));

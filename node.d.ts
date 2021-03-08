@@ -1905,11 +1905,10 @@ declare namespace $.$$ {
 
 declare namespace $ {
     class $mol_text_code_row extends $mol_paragraph {
-        attr(): {
-            mol_text_code_row_numb: number;
-        };
         text(): string;
         minimal_height(): number;
+        numb_showed(): boolean;
+        Numb(): $mol_view;
         Token(id: any): $mol_text_code_token;
         Token_link(id: any): $mol_text_code_token_link;
         numb(): number;
@@ -1930,7 +1929,7 @@ declare namespace $.$$ {
             found: string;
             chunks: string[];
         }[];
-        sub(): $mol_text_code_token[];
+        sub(): $mol_view[];
         row_content(path: number[]): $mol_text_code_token[];
         Token(path: number[]): $mol_text_code_token;
         token_type(path: number[]): string;
@@ -1942,9 +1941,13 @@ declare namespace $.$$ {
 
 declare namespace $ {
     class $mol_text_code extends $mol_list {
+        attr(): {
+            mol_text_code_sidebar_showed: boolean;
+        };
         text(): string;
         text_lines(): readonly string[];
         Row(id: any): $$.$mol_text_code_row;
+        sidebar_showed(): boolean;
         row_numb(id: any): number;
         row_text(id: any): string;
         highlight(): string;
