@@ -19,7 +19,6 @@ namespace $ {
 		},
 		
 		File_views: {
-			padding: $mol_gap.block,
 			display: 'flex',
 		},
 
