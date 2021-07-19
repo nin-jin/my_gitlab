@@ -10,7 +10,7 @@ $my_gitlab $mol_page
 			uri \https://github.com/nin-jin/my_gitlab
 		<= Gitlab $mol_link_iconed
 			uri \https://gitlab.com/gitlab-org/gitlab-foss/-/commit/9517d0eb2ca8bde02d7fae2173e0a43b67b2b9f5#27e06e15cfe9583d733619cf7d72629b777f7757_26212_26221
-			title \GitLab
+			title \ GitLab
 		<= Search $mol_search_jumper
 			query?val <=> search?val \
 			Root <= Body
@@ -27,7 +27,7 @@ $my_gitlab $mol_page
 			checked?val <=> anchoring?val
 			title \Anchoring
 		<= Collapse $mol_check_box
-			checked?val <=> collapse?val \false
+			checked?val <=> collapse?val false
 			title \Collapse
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string

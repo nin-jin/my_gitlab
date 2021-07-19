@@ -40,7 +40,7 @@ namespace $.$$ {
 		}
 
 		search_start( event: Event ) {
-			this.Search().Suggest().Filter().focused( true )
+			this.Search().Query().focused( true )
 			event.preventDefault()
 		}
 
