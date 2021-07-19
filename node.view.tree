@@ -77,7 +77,7 @@ $mol_check $mol_button_minor
 		mol_check_checked <= checked?val false
 		aria-checked <= checked?val false
 		role \checkbox
-	sub /
+	sub /$mol_view_content
 		<= Icon null
 		<= label /
 			<= Title $mol_view
@@ -143,7 +143,7 @@ $mol_expander $mol_list
 
 $mol_paragraph $mol_view
 	line_height 24
-	letter_width 8
+	letter_width 7
 	width_limit Infinity
 	sub / <= title
 
@@ -366,20 +366,11 @@ $mol_link_source $mol_link
 	sub /
 		<= Icon $mol_icon_github_circle
 
-$mol_bar $mol_view
-
-$mol_hotkey $mol_plugin
-	event *
-		^
-		keydown?event <=> keydown?event null
-	key *
-	mod_ctrl false
-	mod_alt false
-	mod_shift false
-
 $mol_pop $mol_view
 	event * keydown?event <=> keydown?event null
 	showed?val false
+	align_vert \
+	align_hor \
 	sub /
 		<= Anchor null
 		<= Bubble $mol_pop_bubble
@@ -397,31 +388,14 @@ $mol_pop_bubble $mol_scroll
 		mol_pop_align <= align \
 		tabindex 0
 
-$mol_string $mol_view
-	dom_name \input
-	enabled true
-	minimal_height 40
-	autocomplete false
-	field *
-		^
-		disabled <= disabled false
-		value <= value_changed?val <=> value?val \
-		placeholder <= hint \
-		type <= type?val \text
-		spellcheck <= spellcheck false
-		autocomplete <= autocomplete_native \
-	attr *
-		^
-		maxlength <= length_max Infinity
+$mol_hotkey $mol_plugin
 	event *
 		^
-		input?event <=> event_change?event null
-		keydown?event <=> event_key_press?event null
-	plugins /
-		<= Submit $mol_hotkey
-			key * enter?event <=> submit?event null
-
-$mol_icon_dots_vertical $mol_icon path \M12,16C13.1,16 14,16.9 14,18C14,19.1 13.1,20 12,20C10.9,20 10,19.1 10,18C10,16.9 10.9,16 12,16M12,10C13.1,10 14,10.9 14,12C14,13.1 13.1,14 12,14C10.9,14 10,13.1 10,12C10,10.9 10.9,10 12,10M12,4C13.1,4 14,4.9 14,6C14,7.1 13.1,8 12,8C10.9,8 10,7.1 10,6C10,4.9 10.9,4 12,4Z
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
 
 $mol_nav $mol_plugin
 	cycle?val false
@@ -433,8 +407,8 @@ $mol_nav $mol_plugin
 	keys_x?val /
 	keys_y?val /
 	-
-	current_x?val \
-	current_y?val \
+	current_x?val null
+	current_y?val null
 	-
 	event_up?event null
 	event_down?event null
@@ -444,68 +418,69 @@ $mol_nav $mol_plugin
 		^
 		keydown?event <=> event_key?event null
 
-$mol_select $mol_pop
-	dictionary *
-	options /string
-	value?val \
-	Option_row!id $mol_button_minor
-		event_click?event <=> event_select!id?event null
-		sub <= option_content!id /
-			<= Option_label!id $mol_dimmer
-				haystack <= option_label!id \
-				needle <= filter_pattern?val \
-	No_options $mol_view
-		sub /
-			<= no_options_message @ \No options
-	plugins /
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection?val /number
+	auto /
+		<= selection_watcher null
+	field *
 		^
-		<= Nav $mol_nav
-			keys_y <= nav_components /$mol_view
-			current_y?component <=> option_focused?component null
-			cycle?val <=> nav_cycle?val true
-	showed?val <=> options_showed?val false
-	Anchor <= Trigger $mol_button_minor
-		click?event <=> open?event null
-		sub <= trigger_content /
-		hint <= hint @ \Pick..
-	bubble_content /
-		<= Menu $mol_list
-			rows <= menu_content /$mol_view
-	Filter $mol_string
-		value?val <=> filter_pattern?val \
-		hint @ \Filter..
-		submit?event <=> submit?event null
-		enabled <= enabled true
-	Trigger_icon $mol_icon_dots_vertical
+		disabled <= disabled false
+		value <= value_changed?val <=> value?val \
+		placeholder <= hint \ 
+		spellcheck <= spellcheck false
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+	attr *
+		^
+		maxlength <= length_max Infinity
+		type <= type?val \text
+	event *
+		^
+		input?event <=> event_change?event null
+		keydown?event <=> event_key_press?event null
+	plugins /
+		<= Submit $mol_hotkey
+			key * enter?event <=> submit?event null
 
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
-$mol_search $mol_bar
+$mol_search $mol_pop
 	query?val \
-	plugins /
+	suggests /string
+	plugins /$mol_plugin
+		^
 		<= Hotkey $mol_hotkey
-			key * escape?val <=> event_clear?val null
-	sub /
-		<= Suggest $mol_select
-			value?val <=> suggest_selected?val \
-			filter_pattern?val <=> suggest_selected?val \
-			hint <= hint @ \Search...
-			filter_pattern?val <=> query?val
-			options_showed <= suggests_showed false
-			options <= suggests /string
-			submit?event <=> submit?event null
-			No_options null
-			enabled <= enabled true
-			Filter => Suggest_filter
-			option_rows => suggest_option_rows
-			menu_content <= suggest_option_rows
-			trigger_content /
-				<= Suggest_filter
-		<= Clear $mol_button_minor
-			sub /
-				<= Clear_icon $mol_icon_cross
-			event_click?val <=> event_clear?val null
-			hint <= clear_hint @ \Clear
+			key * escape?val <=> clear?val null
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y?component <=> nav_focused?component null
+	showed?val <=> suggests_showed?val false
+	Anchor $mol_view
+		sub <= anchor_content /
+			<= Query $mol_string
+				value?val <=> query?val \
+				hint <= hint @ \Search...
+				submit?event <=> submit?event null
+				enabled <= enabled true
+			<= Clear $mol_button_minor
+				hint @ \Clear
+				click?event <=> clear?event null
+				sub /
+					<= Clear_icon $mol_icon_cross
+	bubble_content /$mol_view_content
+		<= Menu $mol_list
+			rows <= menu_items /$mol_view
+	Suggest!id $mol_button_minor
+		click?event <=> suggest_select!id?event null
+		sub <= suggest_content!id /$mol_view_content
+			<= Suggest_label!id $mol_dimmer
+				haystack <= suggest_label!id \
+				needle <= query?val \
 
 $mol_icon_chevron_left $mol_icon path \M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z
 
@@ -535,7 +510,9 @@ $mol_search_jumper $mol_search
 			mod_shift true
 			key * enter?event <=> backward?event
 		<= Forward $mol_hotkey
-			key * enter?event <=> forward?event
+			key *
+				enter?event <=> forward?event
+				escape?val <=> escape?val null
 
 $mol_switch $mol_view
 	Option!id $mol_check
@@ -568,7 +545,7 @@ $my_gitlab $mol_page
 			uri \https://github.com/nin-jin/my_gitlab
 		<= Gitlab $mol_link_iconed
 			uri \https://gitlab.com/gitlab-org/gitlab-foss/-/commit/9517d0eb2ca8bde02d7fae2173e0a43b67b2b9f5#27e06e15cfe9583d733619cf7d72629b777f7757_26212_26221
-			title \GitLab
+			title \ GitLab
 		<= Search $mol_search_jumper
 			query?val <=> search?val \
 			Root <= Body
@@ -585,7 +562,7 @@ $my_gitlab $mol_page
 			checked?val <=> anchoring?val
 			title \Anchoring
 		<= Collapse $mol_check_box
-			checked?val <=> collapse?val \false
+			checked?val <=> collapse?val false
 			title \Collapse
 	File_view!id $my_gitlab_file
 		lines <= file_text!id /string
@@ -598,39 +575,3 @@ $my_gitlab $mol_page
 			key * F?event <=> search_start?event null
 		<= Search_start_2 $mol_hotkey
 			key * F3?event <=> search_start?event null
-
-$mol_view_tree_test_attributes_super $mol_view
-	some *
-		a 0
-		b 2
-
-$mol_view_tree_test_attributes $mol_view_tree_test_attributes_super
-	some *
-		^
-		a 1
-
-$mol_view_tree_test_binding $mol_view
-	value?val <=> task_title_new?val \123
-	enabled <= head_complete_enabled false
-
-$mol_view_tree_test_binding_right $mol_view
-	Test $mol_view_tree_test_binding_right_test
-		width?v => outer_width?v
-
-$mol_view_tree_test_binding_right_test $mol_view
-	width?val 0
-
-$mol_view_tree_test_simple $mol_view
-	some 1
-	bool true
-	str \test
-	arr /
-	arr_string /string
-
-$mol_view_tree_test_attributes_subcomponent $mol_view
-	- Comment
-	Page!index $mol_view_tree_test_attributes_subcomponent_page
-		Sub <= page!index null
-
-$mol_view_tree_test_attributes_subcomponent_page $mol_view
-	Sub null
