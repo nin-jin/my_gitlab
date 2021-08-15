@@ -124,14 +124,9 @@ $mol_check_expand $mol_check
 	checked?val <=> expanded?val false
 	enabled <= expandable false
 
-$mol_float $mol_view
-	style *
-		^
-		minHeight \auto
-
 $mol_expander $mol_list
 	rows /
-		<= Label $mol_float
+		<= Label $mol_view
 			sub /
 				<= Trigger $mol_check_expand
 					checked?val <=> expanded?val false
@@ -462,6 +457,11 @@ $my_gitlab $mol_page
 			key * F?event <=> search_start?event null
 		<= Search_start_2 $mol_hotkey
 			key * F3?event <=> search_start?event null
+
+$mol_float $mol_view
+	style *
+		^
+		minHeight \auto
 
 $mol_grid $mol_scroll
 	row_height 32

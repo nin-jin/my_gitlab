@@ -1220,24 +1220,13 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_float extends $mol_view {
-        style(): {
-            minHeight: string;
-        };
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_expander extends $mol_list {
         rows(): readonly any[];
         expanded(val?: any): boolean;
         label(): readonly any[];
         Trigger(): $$.$mol_check_expand;
         Tools(): any;
-        Label(): $mol_float;
+        Label(): $mol_view;
         content(): readonly any[];
         Content(): $mol_view;
     }
@@ -2504,6 +2493,17 @@ declare namespace $ {
 
 declare namespace $ {
     function $mol_exec(this: $, dir: string, command: string, ...args: string[]): any;
+}
+
+declare namespace $ {
+    class $mol_float extends $mol_view {
+        style(): {
+            minHeight: string;
+        };
+    }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
