@@ -1,6 +1,7 @@
 $my_gitlab_file $mol_expander
 	lines /string
-	Content $mol_text_code
-		text_lines <= lines
-		highlight <= highlight \
+	content /
+		<= Code $mol_text_code
+			text_lines <= lines
+			highlight <= highlight \
 		
