@@ -2,6 +2,7 @@ $my_gitlab_file $mol_expander
 	lines /string
 	content /
 		<= Code $mol_text_code
+			sidebar_showed true
 			text_lines <= lines
 			highlight <= highlight \
 		
