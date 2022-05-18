@@ -201,6 +201,7 @@ $my_gitlab_file $mol_expander
 	lines /string
 	content /
 		<= Code $mol_text_code
+			sidebar_showed true
 			text_lines <= lines
 			highlight <= highlight \
 		
@@ -560,7 +561,7 @@ $my_gitlab $mol_page
 		my_gitlab_anchoring <= anchoring?val true
 	head /
 		<= Title $mol_link_iconed
-			uri \https://gitlab.com/gitlab-org/gitlab-foss/-/commit/9517d0eb2ca8bde02d7fae2173e0a43b67b2b9f5#27e06e15cfe9583d733619cf7d72629b777f7757_26212_26221
+			uri \https://gitlab.com/gitlab-org/frontend/playground/echarts/-/commit/562ba199b271bc46621cf1a9a9b37e679a3f47d3
 			title <= title \GitLab Change Log
 		<= Lights $mol_lights_toggle
 		<= Sources $mol_link_source

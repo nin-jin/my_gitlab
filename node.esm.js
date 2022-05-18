@@ -4881,7 +4881,7 @@ var $;
                 color: $mol_theme.shade,
                 width: rem(3),
                 margin: {
-                    left: rem(-4),
+                    left: rem(-3.75),
                 },
                 display: 'inline-block',
                 whiteSpace: 'nowrap',
@@ -5085,6 +5085,7 @@ var $;
         }
         Code() {
             const obj = new this.$.$mol_text_code();
+            obj.sidebar_showed = () => true;
             obj.text_lines = () => this.lines();
             obj.highlight = () => this.highlight();
             return obj;
@@ -7214,15 +7215,6 @@ var $;
     const { rem, px } = $mol_style_unit;
     const { hsla } = $mol_style_func;
     $mol_style_define($my_gitlab_file, {
-        box: {
-            shadow: [{
-                    x: 0,
-                    y: 0,
-                    blur: 0,
-                    spread: px(1),
-                    color: $mol_theme.line,
-                }],
-        },
         margin: $mol_gap.block,
         border: {
             radius: rem(.25),
@@ -9380,7 +9372,7 @@ var $;
         }
         Title() {
             const obj = new this.$.$mol_link_iconed();
-            obj.uri = () => "https://gitlab.com/gitlab-org/gitlab-foss/-/commit/9517d0eb2ca8bde02d7fae2173e0a43b67b2b9f5#27e06e15cfe9583d733619cf7d72629b777f7757_26212_26221";
+            obj.uri = () => "https://gitlab.com/gitlab-org/frontend/playground/echarts/-/commit/562ba199b271bc46621cf1a9a9b37e679a3f47d3";
             obj.title = () => this.title();
             return obj;
         }
@@ -9777,7 +9769,7 @@ var $;
             files() {
                 const uri = `web.js`;
                 const lines = this.$.$mol_fetch.text(uri).split('\n');
-                return $mol_array_chunks(lines, () => Math.random() > .99);
+                return $mol_array_chunks(lines, () => Math.random() > .999);
             }
             file_views() {
                 return this.files().map((_, i) => this.File_view(i));
