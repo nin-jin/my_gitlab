@@ -566,6 +566,8 @@ $my_gitlab $mol_page
 		<= Lights $mol_lights_toggle
 		<= Sources $mol_link_source
 			uri \https://github.com/nin-jin/my_gitlab
+		<= Tools
+	tools /
 		<= Search $mol_search_jumper
 			query?val <=> search?val \
 			Root <= Body

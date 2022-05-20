@@ -2712,6 +2712,7 @@ declare namespace $ {
             my_gitlab_anchoring: boolean;
         };
         head(): readonly any[];
+        tools(): readonly any[];
         body(): readonly any[];
         foot(): readonly any[];
         File_view(id: any): $$.$my_gitlab_file;

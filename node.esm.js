@@ -9337,6 +9337,11 @@ var $;
                 this.Title(),
                 this.Lights(),
                 this.Sources(),
+                this.Tools()
+            ];
+        }
+        tools() {
+            return [
                 this.Search()
             ];
         }
