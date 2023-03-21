@@ -235,7 +235,7 @@ $mol_text_code $mol_stack
 					highlight <= highlight \
 		<= Copy $mol_button_copy
 			hint @ \Copy whole code
-			text <= text
+			text <= text_export \
 
 $my_gitlab_file $mol_expander
 	lines /string
