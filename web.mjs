@@ -9326,4 +9326,5 @@ var $;
 })($ || ($ = {}));
 //my/gitlab/gitlab.view.css.ts
 
+export default $
 //# sourceMappingURL=web.js.map
